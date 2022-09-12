@@ -10,7 +10,7 @@
       >
         02
       </div>
-      <div class="bg-img">03</div>
+      <div :style="bgImg">03</div>
     </div>
     <div
       :style="{ 'background-image': 'url(https://vuejs.org/images/logo.png)' }"
@@ -18,10 +18,16 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+    data() {
+      return {
+        bgImg: {
+          backgroundImage: `url(${require('../assets/index.png')})`,
+          height: '100vh',
+          width:'100vh'
+
+        }
+      }
+    }
+};
 </script>
-<style scoped>
-.bg-img {
-  background: url ("./assets/index.png");
-}
-</style>
