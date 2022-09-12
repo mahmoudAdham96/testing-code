@@ -1,19 +1,20 @@
-<template>
-  <div id="app" dir="rtl">
-    <nav-Bar></nav-Bar>
-    <Header />
-  </div>
-</template>
 <script>
 import navBar from "./components/navBar.vue";
-import Header from "./components/header.vue";
+import pageHeader from "./components/pageHeader.vue";
 export default {
   components: {
     navBar,
-    Header,
+    pageHeader ,
   },
 };
 </script>
+<template>
+  <div id="app" dir="rtl">
+    <nav-Bar></nav-Bar>
+    <pageHeader></pageHeader>
+  </div>
+</template>
+
 
 <style lang="scss">
 @import url("http://fonts.cdnfonts.com/css/droid-arabic-naskh");

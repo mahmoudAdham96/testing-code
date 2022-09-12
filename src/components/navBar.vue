@@ -94,11 +94,3 @@ export default {
 };
 </script>
 
-<script>
-export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
-};
-</script>
