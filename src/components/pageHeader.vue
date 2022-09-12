@@ -12,6 +12,8 @@
       </div>
       <div :style="bgImg">03</div>
     </div>
+<!-- Another way to access assets ? -->
+    <img src="@/assets/index.png"/>
     <div
       :style="{ 'background-image': 'url(https://vuejs.org/images/logo.png)' }"
     ></div>
