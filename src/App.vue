@@ -1,10 +1,12 @@
 <script>
 import navBar from "./components/navBar.vue";
 import pageHeader from "./components/pageHeader.vue";
+import secVideo from "./components/secVideo.vue";
 export default {
   components: {
     navBar,
-    pageHeader ,
+    pageHeader,
+    secVideo,
   },
 };
 </script>
@@ -12,9 +14,9 @@ export default {
   <div id="app" dir="rtl">
     <nav-Bar></nav-Bar>
     <pageHeader></pageHeader>
+    <secVideo></secVideo>
   </div>
 </template>
-
 
 <style lang="scss">
 @import url("http://fonts.cdnfonts.com/css/droid-arabic-naskh");

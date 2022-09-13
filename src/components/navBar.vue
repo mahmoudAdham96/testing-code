@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="relative flex flex-wrap items-center justify-between px-4 py-3 mb-3"
+    class="relative flex flex-wrap items-center justify-between px-4 py-3 bg-color"
   >
     <div
       class="container px-4 mx-auto flex flex-wrap items-center justify-between"
@@ -93,4 +93,8 @@ export default {
   },
 };
 </script>
-
+<style scoped>
+.bg-color {
+  background-color: #edf1fe;
+}
+</style>
