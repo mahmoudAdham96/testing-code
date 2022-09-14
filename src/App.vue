@@ -2,11 +2,15 @@
 import navBar from "./components/navBar.vue";
 import pageHeader from "./components/pageHeader.vue";
 import secVideo from "./components/secVideo.vue";
+import secVideo2 from "./components/secVideo2.vue";
+import secVideo3 from "./components/secVideo3.vue";
 export default {
   components: {
     navBar,
     pageHeader,
     secVideo,
+    secVideo2,
+    secVideo3,
   },
 };
 </script>
@@ -15,6 +19,8 @@ export default {
     <nav-Bar></nav-Bar>
     <pageHeader></pageHeader>
     <secVideo></secVideo>
+    <secVideo2></secVideo2>
+    <secVideo3></secVideo3>
   </div>
 </template>
 
