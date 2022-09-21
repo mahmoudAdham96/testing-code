@@ -80,7 +80,6 @@
 
 <script>
 export default {
-  name: "pink-navbar",
   data() {
     return {
       showMenu: false,
