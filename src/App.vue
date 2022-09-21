@@ -6,7 +6,7 @@ import secVideo2 from "./components/secVideo2.vue";
 import secVideo3 from "./components/secVideo3.vue";
 import secVideo4 from "./components/secVideo4.vue";
 import secImage from "./components/secImage.vue";
-import Footer from "./components/footer.vue";
+import Footer from "./components/pageFooter.vue";
 export default {
   components: {
     navBar,
