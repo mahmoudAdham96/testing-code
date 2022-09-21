@@ -6,7 +6,7 @@ import secVideo2 from "./components/secVideo2.vue";
 import secVideo3 from "./components/secVideo3.vue";
 import secVideo4 from "./components/secVideo4.vue";
 import secImage from "./components/secImage.vue";
-import Footer from "./components/pageFooter.vue";
+import PageFooter from "./components/pageFooter.vue";
 export default {
   components: {
     navBar,
@@ -16,7 +16,7 @@ export default {
     secVideo3,
     secVideo4,
     secImage,
-    Footer,
+    PageFooter,
   },
 };
 </script>
@@ -29,7 +29,7 @@ export default {
     <secVideo3></secVideo3>
     <secVideo4></secVideo4>
     <secImage></secImage>
-    <Footer></Footer>
+    <PageFooter></PageFooter>
   </div>
 </template>
 
