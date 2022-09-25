@@ -2,7 +2,7 @@
   <div class="">
     <navSearch></navSearch>
     <div
-      class="grid mt-8 max-w-7xl grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-8/12 sm:w-10/12 lg:w-11/12 m-auto"
+      class="grid mt-8 max-w-7xl md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 desktop:grid-cols-4 gap-4 w-8/12 sm:w-10/12 lg:w-11/12 m-auto"
     >
       <div
         v-for="item in 30"
