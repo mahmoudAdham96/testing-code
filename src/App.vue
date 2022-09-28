@@ -46,16 +46,6 @@ export default {
 <template>
   <div id="app" dir="rtl">
     <!-- <nav-Bar></nav-Bar> -->
-    <agile :options="options" class="">
-      <div class="slide bg-blue-500 text-white">
-        <h3>slide 3 hello</h3>
-      </div>
-      <div class="slide bg-red-500 text-white">
-        <h3>slide 2 hello</h3>
-      </div>
-      <template slot="prevButton">prev</template>
-      <template slot="nextButton">next</template>
-    </agile>
     <router-view></router-view>
     <!-- <pageHeader></pageHeader>
     <secVideo></secVideo>
