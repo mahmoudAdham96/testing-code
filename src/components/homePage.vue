@@ -23,7 +23,6 @@ export default {
 <template>
   <div id="app" dir="rtl">
     <nav-Bar></nav-Bar>
-    <router-view></router-view>
     <pageHeader></pageHeader>
     <secVideo></secVideo>
     <secVideo2></secVideo2>

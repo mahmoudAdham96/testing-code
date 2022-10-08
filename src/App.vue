@@ -66,4 +66,22 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.VueCarousel-slide {
+  height: 350px;
+  text-align: center;
+}
+
+.VueCarousel-slide .img-container {
+  height: 130px;
+  width: 100%;
+  float: left;
+}
+
+.VueCarousel-slide img {
+  margin: 0 auto;
+}
+
+.VueCarousel-slide h3 {
+  height: 180px;
+}
 </style>

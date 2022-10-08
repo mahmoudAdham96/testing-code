@@ -7,8 +7,8 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: "/", redirect: "/PageHome" },
-  { path: "/search", name: "products", component: Search },
-  { path: "/PageHome", name: "products", component: PageHome },
+  { path: "/search", name: "Search", component: Search },
+  { path: "/PageHome", name: "PageHome", component: PageHome },
 ];
 
 const router = new VueRouter({
