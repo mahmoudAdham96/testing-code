@@ -46,6 +46,7 @@
           ></path>
         </svg>
         <input
+          @input="handleChange"
           type="search"
           class="form-control relative flex-auto min-w-0 block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none placeholder-yellow-600 placeholder-opacity-75"
           placeholder="البحث عن المتاجر أو العناصر"
@@ -257,3 +258,21 @@
     </nav>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      search: "",
+    };
+  },
+  // props: {
+  //   searchVal: String,
+  // },
+  methods: {
+    handleChange(event) {
+      this.$emit("customChange", event.target.value.toUpperCase());
+      console.log(event.target.value.toUpperCase());
+    },
+  },
+};
+</script>

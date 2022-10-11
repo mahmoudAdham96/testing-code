@@ -1,12 +1,12 @@
 <template>
   <div class="">
-    <navSearch></navSearch>
+    <navSearch @customChange="handleCustomChange"></navSearch>
     <div class="w-10/12 mx-auto mt-10">
       <div
         class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
       >
         <div
-          v-for="item in info"
+          v-for="item in filteredList"
           :key="item.id"
           class="max-w-sm overflow-hidden bg-white rounded-lg dark:bg-gray-800"
         >
@@ -28,7 +28,7 @@
               <slide tabindex="1">
                 <img class="w-full" :src="item.image" alt="" />
               </slide>
-               <slide tabindex="2">
+              <slide tabindex="2">
                 <img
                   class="w-full"
                   src="https://picsum.photos/300/302"
@@ -65,14 +65,27 @@ import axios from "axios";
 export default {
   data() {
     return {
-      info: null,
+      info: [],
+      search: "",
     };
+  },
+  methods: {
+    handleCustomChange(s) {
+      this.search = s;
+    },
   },
   mounted() {
     axios
       .get("https://fakestoreapi.com/products")
       .then((response) => (this.info = response.data))
       .catch((error) => console.log(error));
+  },
+  computed: {
+    filteredList() {
+      return this.info.filter((item) => {
+        return item.title.toLowerCase().includes(this.search.toLowerCase());
+      });
+    },
   },
   components: {
     navSearch,
