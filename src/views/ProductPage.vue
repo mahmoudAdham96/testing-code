@@ -1,12 +1,12 @@
 <template>
   <div class="">
-    <navSearch @customChange="handleCustomChange"></navSearch>
+    <search-List @customChange="handleCustomChange"></search-List>
     <div class="w-10/12 mx-auto mt-10">
       <div
         class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
       >
         <div
-          v-for="item in filteredList"
+          v-for="item in info"
           :key="item.id"
           class="max-w-sm overflow-hidden bg-white rounded-lg dark:bg-gray-800"
         >
@@ -58,7 +58,7 @@
   </div>
 </template>
 <script>
-import navSearch from "../components/navSearch.vue";
+import searchList from "../components/searchList.vue";
 import { Carousel, Slide } from "vue-carousel";
 import axios from "axios";
 
@@ -73,22 +73,38 @@ export default {
     handleCustomChange(s) {
       this.search = s;
     },
-  },
-  mounted() {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => (this.info = response.data))
-      .catch((error) => console.log(error));
-  },
-  computed: {
-    filteredList() {
-      return this.info.filter((item) => {
-        return item.title.toLowerCase().includes(this.search.toLowerCase());
-      });
+
+    init() {
+      this.search = this.$route.params?.search;
     },
   },
+
+  mounted() {
+    this.init();
+    console.log(this.$router);
+    console.log(this.$router.query);
+    console.log(this.search + "mounted");
+    if (this.search) {
+      console.log(this.search + "from Api");
+      const baseURI = `https://fakestoreapi.com/products?search=${this.search}`;
+      console.log(baseURI + "baseURI");
+      axios
+        .get(baseURI)
+        .then((response) => (this.info = response.data))
+        .catch((error) => console.log(error));
+    } else {
+      this.$router.push("PageHome");
+    }
+  },
+  computed: {
+    // filteredList() {
+    //   return this.info.filter((item) => {
+    //     return item.title.toLowerCase().includes(this.search.toLowerCase());
+    //   });
+    // },
+  },
   components: {
-    navSearch,
+    searchList,
     Carousel,
     Slide,
   },

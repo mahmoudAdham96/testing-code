@@ -1,14 +1,24 @@
 import Vue from "vue";
 
 import VueRouter from "vue-router";
-import Search from "../views/searchView.vue";
-import PageHome from "../views/homeView.vue";
+import products from "../views/ProductPage.vue";
+import homePage from "../views/homePage.vue";
+import NotFound from "../views/notFound.vue";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/", redirect: "/PageHome" },
-  { path: "/search", name: "Search", component: Search },
-  { path: "/PageHome", name: "PageHome", component: PageHome },
+  { path: "/", redirect: "/homePage" },
+  { path: "/products/:search", component: products },
+  { path: "*", name: "NotFound", component: NotFound },
+  // {
+  //   path: "/products",
+  //   redirect: (to) => {
+  //     // the function receives the target route as the argument
+  //     // we return a redirect path/location here.
+  //     return { path: "/", query: { q: to.params.search } };
+  //   },
+  // },
+  { path: "/homePage", component: homePage },
 ];
 
 const router = new VueRouter({
