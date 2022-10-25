@@ -4,6 +4,8 @@ import VueRouter from "vue-router";
 import products from "../views/ProductPage.vue";
 import homePage from "../views/homePage.vue";
 import NotFound from "../views/notFound.vue";
+import Paginate from "vuejs-paginate";
+Vue.use("paginate", Paginate);
 Vue.use(VueRouter);
 
 const routes = [
