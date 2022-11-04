@@ -67,7 +67,7 @@
           </div>
         </div>
       </div>
-      <div class="Page navigation example">
+      <div class="Page navigation">
         <paginate
           :page-count="getPaginateCount"
           :prev-text="'Previous'"
@@ -77,13 +77,13 @@
           :page-class="''"
           :page-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
           :prev-class="''"
-          :prev-link-class="'py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
+          :prev-link-class="'py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
           :next-class="''"
-          :next-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
+          :next-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
           :first-last-button="true"
           :first-button-text="'<<'"
           :last-button-text="'>>'"
-          :active-class="'py-2 px-3 text-blue-600 bg-blue-50 border border-gray-300 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
+          :active-class="' px-3  text-blue-600 bg-blue-200  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
         >
         </paginate>
       </div>
@@ -105,7 +105,7 @@ export default {
       search: "",
       isLoaded: false,
       currentPage: 1,
-      perPage: 3,
+      perPage: 4,
     };
   },
   components: {
