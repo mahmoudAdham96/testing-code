@@ -18,12 +18,12 @@
     </div>
     <div v-if="isLoaded" class="w-10/12 mx-auto mt-10">
       <div
-        class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
+        class="max-w-7xl grid grid-cols-1 min-h-full md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
       >
         <div
           v-for="item in getItems"
           :key="item.id"
-          class="max-w-sm overflow-hidden bg-white rounded-lg dark:bg-gray-800"
+          class="max-w-sm overflow-hidden border border-gray-200 shadow-md bg-white rounded-lg dark:bg-gray-800"
         >
           <div style="z-index: 1; overflow: hidden">
             <Carousel
@@ -57,17 +57,17 @@
               <h5
                 class="mb-1 tracking-tight text-sm text-gray-400 dark:text-white"
               >
-                {{ item.title }}
+                {{ item.title.substr(0, 50) }}
               </h5>
             </a>
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {{ item.description.substr(0, 60) }}...
+              {{ item.description.substr(0, 50) }}...
             </p>
             <h1 class="font-bold">${{ item.price }}</h1>
           </div>
         </div>
       </div>
-      <div class="Page navigation">
+      <div class="Page navigation mt-20">
         <paginate
           :page-count="getPaginateCount"
           :prev-text="'Previous'"
@@ -83,13 +83,11 @@
           :first-last-button="true"
           :first-button-text="'<<'"
           :last-button-text="'>>'"
-          :active-class="' px-3  text-blue-600 bg-blue-200  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
+          :active-class="' active-page  text-blue-600 bg-blue-200  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
         >
         </paginate>
       </div>
     </div>
-    <!-- component -->
-    <!-- This is an example component -->
   </div>
 </template>
 <script>
@@ -136,9 +134,7 @@ export default {
       axios
         .get(baseURI)
         .then((response) => {
-          this.info = response.data.map((p) => {
-            return { ...p, title: p.title + new Date() };
-          });
+          this.info = response.data;
           setTimeout(() => (this.isLoaded = true), 500);
           console.log(response.data);
         })
@@ -170,8 +166,12 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 .VueCarousel-slide {
   height: 250px;
+}
+.active-page a {
+  background-color: blue !important;
+  color: white;
 }
 </style>
