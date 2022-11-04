@@ -46,7 +46,7 @@
           ></path>
         </svg>
         <input
-          v-model="search"
+          v-model.trim.lazy="search"
           @keyup.enter="handleChange"
           type="search"
           class="form-control relative flex-auto min-w-0 block px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-yellow-600 focus:outline-none placeholder-yellow-600 placeholder-opacity-75"
@@ -271,9 +271,9 @@ export default {
   //   searchVal: String,
   // },
   methods: {
-    handleChange(event) {
+    handleChange() {
       if (this.search.trim().length > 2) {
-        this.$emit("customChange", event.target.value.trim().toUpperCase());
+        this.$emit("customChange", this.search.toUpperCase());
         this.$router.push(this.search).catch((err) => {
           console.log(err);
         });

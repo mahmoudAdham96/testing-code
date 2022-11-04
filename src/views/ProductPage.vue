@@ -116,6 +116,7 @@ export default {
   },
   methods: {
     handleCustomChange(s) {
+      console.log(s + " ss");
       this.search = s;
       this.gitData();
       console.log(this.search + " s2");
@@ -129,13 +130,19 @@ export default {
       this.gitData();
     },
     gitData() {
+      this.isLoaded = false;
       const baseURI = `https://fakestoreapi.com/products?search=${this.search}`;
       console.log(baseURI + " baseURI gitData");
       axios
         .get(baseURI)
-        .then((response) => (this.info = response.data))
+        .then((response) => {
+          this.info = response.data.map((p) => {
+            return { ...p, title: p.title + new Date() };
+          });
+          setTimeout(() => (this.isLoaded = true), 500);
+          console.log(response.data);
+        })
         .catch((error) => console.log(error));
-      setTimeout(() => (this.isLoaded = true), 2500);
     },
   },
 
