@@ -88,10 +88,12 @@
         </paginate>
       </div>
     </div>
+    <login-page></login-page>
   </div>
 </template>
 <script>
 import searchList from "../components/searchList.vue";
+import loginPage from "../components/loginPage.vue";
 import { Carousel, Slide } from "vue-carousel";
 import axios from "axios";
 import paginate from "vuejs-paginate";
@@ -111,6 +113,7 @@ export default {
     Carousel,
     Slide,
     paginate,
+    loginPage,
   },
   methods: {
     handleCustomChange(s) {

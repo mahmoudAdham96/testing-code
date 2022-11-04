@@ -66,12 +66,15 @@
       >
         <ul class="flex flex-col lg:flex-row list-none mr-auto">
           <li class="nav-item">
-            <a
+            <div
               class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"
-              href="#pablo"
             >
-              <div>تسجيل الدخول</div>
-            </a>
+              <div>
+                <button data-modal-toggle="authentication-modal">
+                  تسجيل الدخول
+                </button>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
