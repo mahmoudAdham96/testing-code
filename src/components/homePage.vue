@@ -9,7 +9,6 @@ import secImage from "./secImage.vue";
 import PageFooter from "./pageFooter.vue";
 import loginPage from "./loginPage.vue";
 
-
 export default {
   components: {
     navBar,

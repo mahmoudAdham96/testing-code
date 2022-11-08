@@ -83,17 +83,15 @@
           :first-last-button="true"
           :first-button-text="'<<'"
           :last-button-text="'>>'"
-          :active-class="' active-page  text-blue-600 bg-blue-200  hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
+          :active-class="' active-page  text-blue-600 bg-yellow-600   hover:bg-yellow-200  hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
         >
         </paginate>
       </div>
     </div>
-    <login-page></login-page>
   </div>
 </template>
 <script>
 import searchList from "../components/searchList.vue";
-import loginPage from "../components/loginPage.vue";
 import { Carousel, Slide } from "vue-carousel";
 import axios from "axios";
 import paginate from "vuejs-paginate";
@@ -113,14 +111,11 @@ export default {
     Carousel,
     Slide,
     paginate,
-    loginPage,
   },
   methods: {
     handleCustomChange(s) {
-      console.log(s + " ss");
       this.search = s;
       this.gitData();
-      console.log(this.search + " s2");
     },
     paginateClickCallback: function (pageNum) {
       this.currentPage = Number(pageNum);
@@ -133,13 +128,11 @@ export default {
     gitData() {
       this.isLoaded = false;
       const baseURI = `https://fakestoreapi.com/products?search=${this.search}`;
-      console.log(baseURI + " baseURI gitData");
       axios
         .get(baseURI)
         .then((response) => {
           this.info = response.data;
           setTimeout(() => (this.isLoaded = true), 500);
-          console.log(response.data);
         })
         .catch((error) => console.log(error));
     },
@@ -147,10 +140,6 @@ export default {
 
   mounted() {
     this.init();
-    console.log(this.$router);
-    // console.log(this.$router.query);
-    console.log(this.search + "mounted");
-    // this.gitData();
   },
   computed: {
     getItems: function () {
@@ -174,7 +163,7 @@ export default {
   height: 250px;
 }
 .active-page a {
-  background-color: blue !important;
+  background-color: #d97706 !important;
   color: white;
 }
 </style>
