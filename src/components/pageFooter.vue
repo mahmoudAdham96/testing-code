@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-10">
     <footer class="bg-black">
       <div class="max-w-screen-xl px-4 pt-16 pb-6 mx-auto sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 md:text-right">

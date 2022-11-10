@@ -1,6 +1,5 @@
 <template>
   <div class="">
-    <search-List @customChange="handleCustomChange"></search-List>
     <div v-if="!isLoaded" class="w-10/12 mx-auto mt-10">
       <div
         class="max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
@@ -91,7 +90,6 @@
   </div>
 </template>
 <script>
-import searchList from "../components/searchList.vue";
 import { Carousel, Slide } from "vue-carousel";
 import axios from "axios";
 import paginate from "vuejs-paginate";
@@ -107,7 +105,6 @@ export default {
     };
   },
   components: {
-    searchList,
     Carousel,
     Slide,
     paginate,
