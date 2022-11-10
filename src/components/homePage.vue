@@ -1,5 +1,5 @@
 <script>
-import navBar from "./navBar.vue";
+import searchList from "./searchList.vue";
 import pageHeader from "./pageHeader.vue";
 import secVideo from "./secVideo.vue";
 import secVideo2 from "./secVideo2.vue";
@@ -11,7 +11,7 @@ import loginPage from "./loginPage.vue";
 
 export default {
   components: {
-    navBar,
+    searchList,
     pageHeader,
     secVideo,
     secVideo2,
@@ -25,7 +25,7 @@ export default {
 </script>
 <template>
   <div id="app" dir="rtl">
-    <nav-Bar></nav-Bar>
+    <search-List></search-List>
     <pageHeader></pageHeader>
     <secVideo></secVideo>
     <secVideo2></secVideo2>

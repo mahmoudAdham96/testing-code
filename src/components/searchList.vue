@@ -1,7 +1,8 @@
 <template>
   <div>
     <nav
-      class="px-2 max-width-full bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700"
+      :style="{ background: navBarColor }"
+      class="px-2 bg-nav-home max-width-full dark:bg-gray-900 dark:border-gray-700"
     >
       <div
         class="container flex flex-wrap justify-between items-center mx-auto"
@@ -47,14 +48,18 @@
             ></path>
           </svg>
         </router-link>
-        <input-search @customChange="handleChange"></input-search>
+        <input-search
+          v-if="$route.path.includes('/products/')"
+          @customChange="handleChange"
+        ></input-search>
         <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
           <ul
-            class="flex flex-col justify-between p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+            class="flex flex-col justify-between p-4 mt-4 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
           >
             <li>
               <a
                 href="#"
+                v-if="$route.path.includes('/products/')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 ><router-link to="/">Home</router-link></a
               >
@@ -62,6 +67,7 @@
             <li>
               <a
                 href="#"
+                v-if="$route.path.includes('/products/')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >Honey Gold</a
               >
@@ -69,6 +75,7 @@
             <li>
               <a
                 href="#"
+                v-if="$route.path.includes('/products/')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >Earn Gift Cards</a
               >
@@ -76,14 +83,13 @@
             <li>
               <a
                 href="#"
+                v-if="$route.path.includes('/products/')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >Join</a
               >
             </li>
             <li>
-              <div
-                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
+              <div class="block py-2 pr-4 pl-3">
                 <button @click="toggleModal">Log in</button>
               </div>
             </li>
@@ -117,6 +123,15 @@ export default {
     },
     toggleModal() {
       this.show = !this.show;
+    },
+  },
+  computed: {
+    navBarColor() {
+      if (this.$route.path.includes("/products")) {
+        // if it is a dark route
+        return "white"; // basically any light color you want
+      }
+      return "#edf1fe"; // the dark color of your choice.
     },
   },
 };

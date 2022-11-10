@@ -1,7 +1,7 @@
 <template>
   <div v-if="show">
     <div
-      class="transition ease-in-out delay-150 flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
+      class="flex overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center"
     >
       <div class="fixed z-10 bg-gray-500 opacity-75 w-full h-full"></div>
       <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
