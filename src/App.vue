@@ -8,33 +8,21 @@ export default {
   },
   data() {
     return {
-      options: {
-        navButtons: false,
-        responsive: [
-          {
-            breakpoint: 600,
-            settings: {
-              dots: false,
-            },
-          },
-          {
-            breakpoint: 900,
-            settings: {
-              navButtons: true,
-              dots: true,
-              infinite: false,
-            },
-          },
-        ],
-      },
+      search: "",
     };
+  },
+  methods: {
+    handleCustomChange(s) {
+      this.search = s;
+      console.log(this.search);
+    },
   },
 };
 </script>
 <template>
-  <div id="app" dir="rtl">
-    <nav-Bar></nav-Bar>
-    <router-view></router-view>
+  <div id="app" dir="">
+    <nav-Bar @customChange="handleCustomChange"></nav-Bar>
+    <router-view :valSearch="this.search"></router-view>
     <Page-Footer></Page-Footer>
   </div>
 </template>
@@ -46,7 +34,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
 }
 .VueCarousel-slide {
   height: 350px;

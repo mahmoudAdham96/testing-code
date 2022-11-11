@@ -2,6 +2,7 @@ import Vue from "vue";
 
 import VueRouter from "vue-router";
 import products from "../views/ProductPage.vue";
+import prodDetails from "../views/prodDetails.vue";
 import homePage from "../views/homePage.vue";
 import NotFound from "../views/notFound.vue";
 import Paginate from "vuejs-paginate";
@@ -10,7 +11,9 @@ Vue.use(VueRouter);
 
 const routes = [
   { path: "/", redirect: "/homePage" },
+  { path: "/", redirect: "/homePage" },
   { path: "/products/:search", component: products },
+  { path: "/product/:id", component: prodDetails },
   { path: "*", name: "NotFound", component: NotFound },
   // {
   //   path: "/products",

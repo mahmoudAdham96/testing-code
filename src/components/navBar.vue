@@ -49,7 +49,7 @@
           </svg>
         </router-link>
         <input-search
-          v-if="$route.path.includes('/products/')"
+          v-if="$route.path.includes('/product')"
           @customChange="handleChange"
         ></input-search>
         <div class="hidden w-full md:block md:w-auto" id="navbar-multi-level">
@@ -59,7 +59,7 @@
             <li>
               <a
                 href="#"
-                v-if="$route.path.includes('/products/')"
+                v-if="$route.path.includes('/product')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 ><router-link to="/">Home</router-link></a
               >
@@ -67,7 +67,7 @@
             <li>
               <a
                 href="#"
-                v-if="$route.path.includes('/products/')"
+                v-if="$route.path.includes('/product')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >Honey Gold</a
               >
@@ -75,7 +75,7 @@
             <li>
               <a
                 href="#"
-                v-if="$route.path.includes('/products/')"
+                v-if="$route.path.includes('/product')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >Earn Gift Cards</a
               >
@@ -83,7 +83,7 @@
             <li>
               <a
                 href="#"
-                v-if="$route.path.includes('/products/')"
+                v-if="$route.path.includes('/product')"
                 class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow-600 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >Join</a
               >
@@ -129,7 +129,7 @@ export default {
   },
   computed: {
     navBarColor() {
-      if (this.$route.path.includes("/products")) {
+      if (this.$route.path.includes("/product")) {
         return "white";
       }
       return "#edf1fe";

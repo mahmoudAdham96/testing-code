@@ -24,46 +24,48 @@
           :key="item.id"
           class="max-w-sm overflow-hidden border border-gray-200 shadow-md bg-white rounded-lg dark:bg-gray-800"
         >
-          <div style="z-index: 1; overflow: hidden">
-            <Carousel
-              :per-page="1"
-              :mouse-drag="true"
-              :navigationEnabled="true"
-              :rtl="true"
-              :indicators="false"
-              :controls="true"
-            >
-              <!-- <slide tabindex="1" v-for="img in 5" :key="img">
+          <router-link :to="`/product/${item.id}`">
+            <div style="z-index: 1; overflow: hidden">
+              <Carousel
+                :per-page="1"
+                :mouse-drag="true"
+                :navigationEnabled="true"
+                :rtl="true"
+                :indicators="false"
+                :controls="true"
+              >
+                <!-- <slide tabindex="1" v-for="img in 5" :key="img">
                 <img
                   class="w-full"
                   :src="`https://picsum.photos/300/30${img}`"
                   alt=""
                 /> -->
-              <slide tabindex="1">
-                <img class="w-full" :src="item.image" alt="" />
-              </slide>
-              <slide tabindex="2">
-                <img
-                  class="w-full"
-                  src="https://picsum.photos/300/302"
-                  alt=""
-                />
-              </slide>
-            </Carousel>
-          </div>
-          <div class="text-right p-4">
-            <a href="#">
-              <h5
-                class="mb-1 tracking-tight text-sm text-gray-400 dark:text-white"
-              >
-                {{ item.title.substr(0, 50) }}
-              </h5>
-            </a>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              {{ item.description.substr(0, 50) }}...
-            </p>
-            <h1 class="font-bold">${{ item.price }}</h1>
-          </div>
+                <slide tabindex="1">
+                  <img class="w-full" :src="item.image" alt="" />
+                </slide>
+                <slide tabindex="2">
+                  <img
+                    class="w-full"
+                    src="https://picsum.photos/300/302"
+                    alt=""
+                  />
+                </slide>
+              </Carousel>
+            </div>
+            <div class="text-right p-4">
+              <a href="#">
+                <h5
+                  class="mb-1 tracking-tight text-sm text-gray-400 dark:text-white"
+                >
+                  {{ item.title.substr(0, 50) }}
+                </h5>
+              </a>
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                {{ item.description.substr(0, 50) }}...
+              </p>
+              <h1 class="font-bold">${{ item.price }}</h1>
+            </div>
+          </router-link>
         </div>
       </div>
       <div class="Page navigation mt-20">
@@ -104,16 +106,30 @@ export default {
       perPage: 4,
     };
   },
+  props: ["valSearch"],
   components: {
     Carousel,
     Slide,
     paginate,
   },
-  methods: {
-    handleCustomChange(s) {
-      this.search = s;
-      this.gitData();
+  watch: {
+    valSearch: {
+      immediate: true,
+      deep: true,
+      handler(newValue) {
+        if (newValue) {
+          this.search = newValue;
+          this.gitData();
+        }
+      },
     },
+  },
+  methods: {
+    // handleCustomChange(s) {
+    //   this.search = s;
+    //   console.log(this.valSearch);
+    //   this.gitData();
+    // },
     paginateClickCallback: function (pageNum) {
       this.currentPage = Number(pageNum);
     },
@@ -129,6 +145,7 @@ export default {
         .get(baseURI)
         .then((response) => {
           this.info = response.data;
+          console.log(baseURI + "");
           setTimeout(() => (this.isLoaded = true), 500);
         })
         .catch((error) => console.log(error));
@@ -146,6 +163,9 @@ export default {
     },
     getPaginateCount: function () {
       return Math.ceil(this.info.length / this.perPage);
+    },
+    gitValueSearch() {
+      return this.search == this.valSearch;
     },
     // filteredList() {
     //   return this.info.filter((item) => {
