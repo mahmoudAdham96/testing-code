@@ -1,13 +1,29 @@
 <template>
   <div class="mt-10">
-    <footer class="bg-black">
+    <footer
+      :class="[
+        this.$route.path.includes('/product')
+          ? 'bg-white border-t border-gray-100'
+          : 'bg-black',
+        '',
+      ]"
+    >
       <div class="max-w-screen-xl px-4 pt-16 pb-6 mx-auto sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 md:text-right">
           <div
             class="grid grid-cols-1 gap-8 lg:col-span-2 sm:grid-cols-2 lg:grid-cols-4"
           >
             <div>
-              <p class="font-medium text-xl text-white">شركة</p>
+              <p
+                :class="[
+                  this.$route.path.includes('/product')
+                    ? 'text-black'
+                    : 'text-white',
+                  'font-medium text-xl',
+                ]"
+              >
+                شركة
+              </p>
 
               <nav
                 class="flex flex-col whitespace-pre-line mt-4 leading-8 space-y-2 text-sm text-gray-500"
@@ -22,7 +38,16 @@
             </div>
 
             <div>
-              <p class="font-medium text-xl text-white">منتج</p>
+              <p
+                :class="[
+                  this.$route.path.includes('/product')
+                    ? 'text-black'
+                    : 'text-white',
+                  'font-medium text-xl',
+                ]"
+              >
+                منتج
+              </p>
 
               <nav
                 class="flex flex-col mt-4 space-y-2 text-sm leading-8 text-gray-500"
@@ -36,7 +61,16 @@
             </div>
 
             <div>
-              <p class="font-medium text-xl text-white">قانوني</p>
+              <p
+                :class="[
+                  this.$route.path.includes('/product')
+                    ? 'text-black'
+                    : 'text-white',
+                  'font-medium text-xl',
+                ]"
+              >
+                قانوني
+              </p>
 
               <nav
                 class="flex flex-col mt-4 space-y-2 text-sm leading-8 text-gray-500"
@@ -51,7 +85,16 @@
             </div>
 
             <div>
-              <p class="font-medium text-xl text-white">تابعنا</p>
+              <p
+                :class="[
+                  this.$route.path.includes('/product')
+                    ? 'text-black'
+                    : 'text-white',
+                  'font-medium text-xl',
+                ]"
+              >
+                تابعنا
+              </p>
 
               <nav
                 class="flex flex-col mt-4 space-y-2 text-sm leading-8 text-gray-500"
@@ -64,9 +107,23 @@
             </div>
           </div>
           <div>
-            <h1 class="text-white mb-4">احصل على التطبيق</h1>
-            <div class="flex border w-40 rounded-lg px-2 py-1">
-              <div class="ml-4 text-white">
+            <h1
+              :class="[
+                this.$route.path.includes('/product')
+                  ? 'text-black'
+                  : 'text-white',
+                'mb-4',
+              ]"
+            >
+              احصل على التطبيق
+            </h1>
+            <div
+              :class="[
+                this.$route.path.includes('/product') ? 'bg-black' : '',
+                'flex border w-40 rounded-lg px-2 py-1',
+              ]"
+            >
+              <div class="text-white ml-4">
                 <p class="text-xs">GET IT ON</p>
                 <p class="text-sm md:text-base">Google Play</p>
               </div>
@@ -75,8 +132,13 @@
                 class="w-7 md:w-8"
               />
             </div>
-            <div class="flex border w-40 rounded-lg px-2 py-1 my-2">
-              <div class="ml-4 text-white">
+            <div
+              :class="[
+                this.$route.path.includes('/product') ? 'bg-black' : '',
+                'flex border w-40 rounded-lg px-2 py-1 my-2',
+              ]"
+            >
+              <div class="text-white ml-4">
                 <p class="text-xs text-gray-200">Download on</p>
                 <p class="text-sm md:text-base">Apple Store</p>
               </div>
@@ -109,3 +171,15 @@
     </footer>
   </div>
 </template>
+<script>
+export default {
+  computed: {
+    navBarColor() {
+      if (this.$route.path.includes("/product")) {
+        return "bg-white";
+      }
+      return "bg-black";
+    },
+  },
+};
+</script>

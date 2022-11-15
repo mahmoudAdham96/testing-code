@@ -15,25 +15,25 @@
         </div>
       </div>
     </div>
-    <div v-if="isLoaded" class="w-10/12 mx-auto mt-10">
+    <div v-show="isLoaded" class="w-10/12 mx-auto mt-10">
       <div
         class="max-w-7xl grid grid-cols-1 min-h-full md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
       >
         <div
-          v-for="item in getItems"
+          v-for="item in products"
           :key="item.id"
           class="max-w-sm overflow-hidden border border-gray-200 shadow-md bg-white rounded-lg dark:bg-gray-800"
         >
-          <router-link :to="`/product/${item.id}`">
+          <router-link :to="`/product/${item.ModelId}`">
             <div style="z-index: 1; overflow: hidden">
               <Carousel
                 :per-page="1"
                 :mouse-drag="true"
                 :navigationEnabled="true"
-                :rtl="true"
                 :indicators="false"
                 :controls="true"
-              >
+                >
+                <!-- :rtl="true" -->
                 <!-- <slide tabindex="1" v-for="img in 5" :key="img">
                 <img
                   class="w-full"
@@ -41,7 +41,11 @@
                   alt=""
                 /> -->
                 <slide tabindex="1">
-                  <img class="w-full" :src="item.image" alt="" />
+                  <img
+                    class="w-full"
+                    :src="item.DefaultOptionImageUrl"
+                    alt=""
+                  />
                 </slide>
                 <slide tabindex="2">
                   <img
@@ -57,37 +61,37 @@
                 <h5
                   class="mb-1 tracking-tight text-sm text-gray-400 dark:text-white"
                 >
-                  {{ item.title.substr(0, 50) }}
+                  {{ item.ProductDescription.substr(0, 50) }}
                 </h5>
               </a>
               <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {{ item.description.substr(0, 50) }}...
+                {{ item.ProductDescription.substr(0, 50) }}...
               </p>
-              <h1 class="font-bold">${{ item.price }}</h1>
+              <h1 class="font-bold">${{ item.Price }}</h1>
             </div>
           </router-link>
         </div>
       </div>
-      <div class="Page navigation mt-20">
-        <paginate
-          :page-count="getPaginateCount"
-          :prev-text="'Previous'"
-          :next-text="'next'"
-          :click-handler="paginateClickCallback"
-          :container-class="'inline-flex -space-x-px'"
-          :page-class="''"
-          :page-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
-          :prev-class="''"
-          :prev-link-class="'py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
-          :next-class="''"
-          :next-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
-          :first-last-button="true"
-          :first-button-text="'<<'"
-          :last-button-text="'>>'"
-          :active-class="' active-page  text-blue-600 bg-yellow-600   hover:bg-yellow-200  hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
-        >
-        </paginate>
-      </div>
+    </div>
+    <div class="Page navigation mt-20">
+      <paginate
+        :page-count="getPaginateCount"
+        :prev-text="'Previous'"
+        :next-text="'next'"
+        :click-handler="paginateClickCallback"
+        :container-class="'inline-flex -space-x-px'"
+        :page-class="''"
+        :page-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
+        :prev-class="''"
+        :prev-link-class="'py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
+        :next-class="''"
+        :next-link-class="'py-2 px-3 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'"
+        :first-last-button="true"
+        :first-button-text="'<<'"
+        :last-button-text="'>>'"
+        :active-class="' active-page  text-blue-600 bg-yellow-600   hover:bg-yellow-200  hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white'"
+      >
+      </paginate>
     </div>
   </div>
 </template>
@@ -99,11 +103,12 @@ import paginate from "vuejs-paginate";
 export default {
   data() {
     return {
-      info: [],
-      search: "",
+      products: [],
+      pages: [],
+      search: "t-shert",
       isLoaded: false,
       currentPage: 1,
-      perPage: 4,
+      perPage: 48,
     };
   },
   props: ["valSearch"],
@@ -113,6 +118,15 @@ export default {
     paginate,
   },
   watch: {
+    currentPage: {
+      immediate: true,
+      deep: true,
+      handler(newValue) {
+        if (newValue) {
+          this.gitData();
+        }
+      },
+    },
     valSearch: {
       immediate: true,
       deep: true,
@@ -140,12 +154,15 @@ export default {
     },
     gitData() {
       this.isLoaded = false;
-      const baseURI = `https://fakestoreapi.com/products?search=${this.search}`;
+      const baseURI = `https://honeyapi.herokuapp.com/api/v1/products/${this.search}?page=${this.currentPage}`;
       axios
         .get(baseURI)
         .then((response) => {
-          this.info = response.data;
-          console.log(baseURI + "");
+          this.products = response.data.products;
+          this.pages = response.data.pages;
+          this.currentPage = this.pages.CurrentPageIndex;
+          console.log(response);
+          // console.log(this.products.data.pages.CurrentPageIndex);
           setTimeout(() => (this.isLoaded = true), 500);
         })
         .catch((error) => console.log(error));
@@ -157,18 +174,19 @@ export default {
   },
   computed: {
     getItems: function () {
+      // let start = (this.currentPage - 1) * this.perPage;
       let start = (this.currentPage - 1) * this.perPage;
       let end = this.currentPage * this.perPage;
-      return this.info.slice(start, end);
+      return this.products.slice(start, end);
     },
     getPaginateCount: function () {
-      return Math.ceil(this.info.length / this.perPage);
+      return Math.ceil(this.pages.PageCount);
     },
     gitValueSearch() {
       return this.search == this.valSearch;
     },
     // filteredList() {
-    //   return this.info.filter((item) => {
+    //   return this.products.filter((item) => {
     //     return item.title.toLowerCase().includes(this.search.toLowerCase());
     //   });
     // },

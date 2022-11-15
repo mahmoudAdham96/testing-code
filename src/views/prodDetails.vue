@@ -1,41 +1,47 @@
 <template>
   <div class="border-t-2 border-t-indigo-500">
-    <div class="container w-5/6 mx-auto">
-      <div v-for="prod in products" :key="prod.id">
-        <div class="bg-gray-400">{{ prod.id }} ss</div>
-      </div>
+    <div
+      class="container w-5/6 mx-auto"
+      v-for="prod in filteredProd"
+      :key="prod.id"
+    >
       <div class="text-left mb-8">
-        <router-link to="/">home</router-link> > Dreamcast T-Shirt Essential
-        T-Shirt
+        <router-link to="/">home</router-link> > {{ prod.category }}
       </div>
       <div class="flex text-black justify-between">
         <div class="w-1/2">
           <h1 class="text-left text-4xl font-bold">
-            Dreamcast T-Shirt Essential T-Shirt
+            {{ prod.title }}
           </h1>
           <div class="flex">
             <div class="w-1/6">
               <img
                 :class="{
-                  'border-gray-900  opacity-100':
-                    imgActive.includes('prod-image.jpg'),
+                  'border-gray-900  opacity-100': imgActive.includes(
+                    prod.image
+                  ),
                 }"
-                @click="getImgActive('prod-image.jpg')"
-                class="p-2 mt-6 max-h-28 rounded opacity-75 hover:opacity-100 border hover:border-gray-900"
-                :src="getImgUrl('prod-image.jpg')"
+                @click="getImgActive(prod.image)"
+                class="p-2 mt-6 h-20 object-cover w-20 rounded opacity-75 hover:opacity-100 border hover:border-gray-900"
+                :src="prod.image"
               />
               <img
                 :class="{
-                  ' border-gray-900  opacity-100':
-                    imgActive.includes('prod-image2.jpg'),
+                  ' border-gray-900  opacity-100': imgActive.includes(
+                    'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'
+                  ),
                 }"
-                @click="getImgActive('prod-image2.jpg')"
-                class="p-2 mt-6 max-h-28 rounded w-full opacity-50 hover:opacity-100 border hover:border-gray-900"
-                :src="getImgUrl('prod-image2.jpg')"
+                @click="
+                  getImgActive(
+                    'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'
+                  )
+                "
+                class="p-2 mt-6 h-20 object-cover w-20 max-h-28 rounded opacity-50 hover:opacity-100 border hover:border-gray-900"
+                :src="'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'"
               />
             </div>
             <div class="w-5/6">
-              <img class="w-full m-auto p-20" :src="getImgUrl(imgActive)" />
+              <img class="w-full m-auto p-20" :src="imgActive" />
             </div>
           </div>
         </div>
@@ -60,7 +66,9 @@
                 Top pick
               </div>
             </div>
-            <div class="text-left my-8 font-bold text-6xl">$23.79</div>
+            <div class="text-left my-8 font-bold text-6xl">
+              ${{ prod.price }}
+            </div>
             <button
               class="bg-yellow-600 hover:bg-opacity-70 active:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-300 text-white w-full rounded text-xl py-2"
             >
@@ -82,9 +90,9 @@
         <div class="text-left text-lg font-bold my-4">Product Details</div>
         <ul class="list-disc w-1/2">
           <li class="text-left">
-            Just your everyday smooth, comfy tee, a wardrobe staple
+            {{ prod.description }}
           </li>
-          <li class="text-left">
+          <!-- <li class="text-left">
             Slim fit, so size up if you prefer a looser fit, or check out the
             Classic T-Shirt
           </li>
@@ -98,7 +106,7 @@
             Midweight 4.2 oz. / 145 gsm fabric, solid color t-shirts are 100%
             cotton, heather grey t-shirts are 90% cotton/10% polyester charcoal
             heather t-shirts are 52% cotton/48% polyester
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
@@ -116,6 +124,9 @@ export default {
       isLoaded: false,
     };
   },
+  mounted() {
+    this.gitData();
+  },
   methods: {
     gitData() {
       const baseURI = `https://fakestoreapi.com/products?search=`;
@@ -123,16 +134,18 @@ export default {
         .get(baseURI)
         .then((response) => {
           this.products = response.data;
-          console.log(this.products + "");
+          this.id = parseInt(this.$route.params?.id);
+          this.imgActive = this.products[this.id - 1].image;
+          console.log(this.imgActive);
+          console.log(this.id);
         })
         .catch((error) => console.log(error));
     },
-    getImgUrl(pic) {
-      return require("../assets/" + pic);
-    },
+    // getImgUrl(pic) {
+    //   return require("../assets/" + pic);
+    // },
     getImgActive(pic) {
       this.imgActive = pic;
-      console.log(this.$route.params?.id + "id 55");
     },
     init() {
       this.id = this.$route.params?.id;
@@ -142,10 +155,10 @@ export default {
   },
   computed: {
     filteredProd() {
-      console.log(this.products + "hkjhjkj");
-      return this.products.filter((prod) => {
-        return prod.id.toLowerCase().includes(this.id.toLowerCase());
-      });
+      console.log(this.products);
+      console.log(this.imgActive);
+
+      return this.products.filter((prod) => prod.id === this.id);
     },
   },
 };
