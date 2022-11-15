@@ -24,52 +24,50 @@
           :key="item.id"
           class="max-w-sm overflow-hidden border border-gray-200 shadow-md bg-white rounded-lg dark:bg-gray-800"
         >
-          <router-link :to="`/product/${item.ModelId}`">
-            <div style="z-index: 1; overflow: hidden">
-              <Carousel
-                :per-page="1"
-                :mouse-drag="true"
-                :navigationEnabled="true"
-                :indicators="false"
-                :controls="true"
-                >
-                <!-- :rtl="true" -->
-                <!-- <slide tabindex="1" v-for="img in 5" :key="img">
+          <div style="z-index: 1; overflow: hidden">
+            <Carousel
+              :per-page="1"
+              :mouse-drag="true"
+              :navigationEnabled="true"
+              :indicators="false"
+              :controls="true"
+            >
+              <!-- :rtl="true" -->
+              <!-- <slide tabindex="1" v-for="img in 5" :key="img">
                 <img
                   class="w-full"
                   :src="`https://picsum.photos/300/30${img}`"
                   alt=""
                 /> -->
-                <slide tabindex="1">
-                  <img
-                    class="w-full"
-                    :src="item.DefaultOptionImageUrl"
-                    alt=""
-                  />
-                </slide>
-                <slide tabindex="2">
+              <slide
+                tabindex="1"
+                v-for="img in item.OptionImageUrlList"
+                :key="img"
+              >
+                <img class="w-full" :src="img" alt="" />
+              </slide>
+              <!-- <slide tabindex="2">
                   <img
                     class="w-full"
                     src="https://picsum.photos/300/302"
                     alt=""
                   />
-                </slide>
-              </Carousel>
-            </div>
-            <div class="text-right p-4">
-              <a href="#">
-                <h5
-                  class="mb-1 tracking-tight text-sm text-gray-400 dark:text-white"
-                >
-                  {{ item.ProductDescription.substr(0, 50) }}
-                </h5>
-              </a>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                {{ item.ProductDescription.substr(0, 50) }}...
-              </p>
-              <h1 class="font-bold">${{ item.Price }}</h1>
-            </div>
-          </router-link>
+                </slide> -->
+            </Carousel>
+          </div>
+          <div class="text-right p-4">
+            <a href="#">
+              <h5
+                class="mb-1 tracking-tight text-sm text-gray-400 dark:text-white"
+              >
+                {{ item.ProductDescription.substr(0, 50) }}
+              </h5>
+            </a>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {{ item.ProductDescription.substr(0, 50) }}...
+            </p>
+            <h1 class="font-bold">${{ item.Price }}</h1>
+          </div>
         </div>
       </div>
     </div>
