@@ -1,31 +1,30 @@
 <template>
   <div class="border-t-2 border-t-indigo-500">
-    <div
-      class="container w-5/6 mx-auto"
-      v-for="prod in filteredProd"
-      :key="prod.id"
-    >
+    <div class="container w-5/6 mx-auto">
       <div class="text-left mb-8">
-        <router-link to="/">home</router-link> > {{ prod.category }}
+        <router-link to="/">home</router-link> >
+        {{ product.ProductDescription }}
       </div>
       <div class="flex text-black justify-between">
         <div class="w-1/2">
           <h1 class="text-left text-4xl font-bold">
-            {{ prod.title }}
+            {{ product.Brand }}
           </h1>
           <div class="flex">
             <div class="w-1/6">
+            <div
+              v-for="img in product.OptionImageUrlList"
+              :key="img"
+            >
               <img
                 :class="{
-                  'border-gray-900  opacity-100': imgActive.includes(
-                    prod.image
-                  ),
+                  'border-gray-900  opacity-100': imgActive.includes(img),
                 }"
-                @click="getImgActive(prod.image)"
+                @click="getImgActive(img)"
                 class="p-2 mt-6 h-20 object-cover w-20 rounded opacity-75 hover:opacity-100 border hover:border-gray-900"
-                :src="prod.image"
+                :src="img"
               />
-              <img
+              <!-- <img
                 :class="{
                   ' border-gray-900  opacity-100': imgActive.includes(
                     'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'
@@ -38,7 +37,8 @@
                 "
                 class="p-2 mt-6 h-20 object-cover w-20 max-h-28 rounded opacity-50 hover:opacity-100 border hover:border-gray-900"
                 :src="'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'"
-              />
+              /> -->
+            </div>
             </div>
             <div class="w-5/6">
               <img class="w-full m-auto p-20" :src="imgActive" />
@@ -67,7 +67,7 @@
               </div>
             </div>
             <div class="text-left my-8 font-bold text-6xl">
-              ${{ prod.price }}
+              ${{ product.Price }}
             </div>
             <button
               class="bg-yellow-600 hover:bg-opacity-70 active:bg-yellow-700 focus:outline-none focus:ring focus:ring-yellow-300 text-white w-full rounded text-xl py-2"
@@ -90,7 +90,7 @@
         <div class="text-left text-lg font-bold my-4">Product Details</div>
         <ul class="list-disc w-1/2">
           <li class="text-left">
-            {{ prod.description }}
+            {{ product.ProductDescription }}
           </li>
           <!-- <li class="text-left">
             Slim fit, so size up if you prefer a looser fit, or check out the
@@ -118,9 +118,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      imgActive: "prod-image.jpg",
-      id: null,
-      products: [],
+      imgActive: "",
+      product: [],
       isLoaded: false,
     };
   },
@@ -129,15 +128,13 @@ export default {
   },
   methods: {
     gitData() {
-      const baseURI = `https://fakestoreapi.com/products?search=`;
+      const baseURI = `https://honeyapi.herokuapp.com/api/v1/products/details/${this.$route.params?.id} `;
       axios
         .get(baseURI)
         .then((response) => {
-          this.products = response.data;
-          this.id = parseInt(this.$route.params?.id);
-          this.imgActive = this.products[this.id - 1].image;
+          this.product = response.data;
+          this.imgActive = response.data.OptionImageUrlList[0];
           console.log(this.imgActive);
-          console.log(this.id);
         })
         .catch((error) => console.log(error));
     },
@@ -150,16 +147,9 @@ export default {
     init() {
       this.id = this.$route.params?.id;
       console.log(this.id + "id 55");
-      console.log(this.products + "68");
+      console.log(this.product + "68");
     },
   },
-  computed: {
-    filteredProd() {
-      console.log(this.products);
-      console.log(this.imgActive);
-
-      return this.products.filter((prod) => prod.id === this.id);
-    },
-  },
+  computed: {},
 };
 </script>
