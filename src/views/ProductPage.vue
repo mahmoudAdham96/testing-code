@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <div v-show="isLoaded" class="w-10/12 mx-auto mt-10">
+    <div v-show="isLoaded && products" class="w-10/12 mx-auto mt-10">
       <div
         class="max-w-7xl grid grid-cols-1 min-h-full md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10 mx-auto"
       >
@@ -66,7 +66,31 @@
         </div>
       </div>
     </div>
-    <div class="Page navigation mt-20">
+    <div v-if="products.length <= 0">
+      <div>
+        <img
+          alt="Not Found"
+          class="loading-0-2-50 load-0-2-51 w-20 m-auto"
+          data-src="https://cdn.joinhoney.com/search/not-found.png"
+          data-srcset="
+    https://cdn.joinhoney.com/images/search/not-found.png 1x,
+    https://cdn.joinhoney.com/images/search/not-found@2x.png 2x,
+    https://cdn.joinhoney.com/images/search/not-found@3x.png 3x
+  "
+          sizes=""
+          title=""
+          src="https://cdn.joinhoney.com/search/not-found.png"
+          srcset="
+            https://cdn.joinhoney.com/images/search/not-found.png    1x,
+            https://cdn.joinhoney.com/images/search/not-found@2x.png 2x,
+            https://cdn.joinhoney.com/images/search/not-found@3x.png 3x
+          "
+        />
+      </div>
+      <div class="text-xl font-bold mt-4">No results for “{{ search }}”</div>
+      <p>Check spelling for any typos or errors</p>
+    </div>
+    <div v-if="products.length >= 1" class="Page navigation mt-20">
       <paginate
         :page-count="getPaginateCount"
         :prev-text="'Previous'"

@@ -12,19 +12,16 @@
           </h1>
           <div class="flex">
             <div class="w-1/6">
-            <div
-              v-for="img in product.OptionImageUrlList"
-              :key="img"
-            >
-              <img
-                :class="{
-                  'border-gray-900  opacity-100': imgActive.includes(img),
-                }"
-                @click="getImgActive(img)"
-                class="p-2 mt-6 h-20 object-cover w-20 rounded opacity-75 hover:opacity-100 border hover:border-gray-900"
-                :src="img"
-              />
-              <!-- <img
+              <div v-for="img in product.OptionImageUrlList" :key="img">
+                <img
+                  :class="{
+                    'border-gray-900  opacity-100': imgActive.includes(img),
+                  }"
+                  @click="getImgActive(img)"
+                  class="p-2 mt-6 h-20 object-cover w-20 rounded opacity-75 hover:opacity-100 border hover:border-gray-900"
+                  :src="img"
+                />
+                <!-- <img
                 :class="{
                   ' border-gray-900  opacity-100': imgActive.includes(
                     'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'
@@ -38,7 +35,7 @@
                 class="p-2 mt-6 h-20 object-cover w-20 max-h-28 rounded opacity-50 hover:opacity-100 border hover:border-gray-900"
                 :src="'https://i.honey-images.com/v4/7359609457586544172_2c8dbd4a77a552a0d1d50de189b51e6c.jpg'"
               /> -->
-            </div>
+              </div>
             </div>
             <div class="w-5/6">
               <img class="w-full m-auto p-20" :src="imgActive" />
