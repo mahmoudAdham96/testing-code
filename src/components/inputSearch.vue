@@ -1,6 +1,7 @@
 <template>
   <div class="relative">
     <input
+      ref="fileInput"
       v-model.trim.lazy="search"
       @keyup.enter="handleChange"
       type="search"

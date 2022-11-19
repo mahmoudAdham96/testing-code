@@ -5,8 +5,8 @@
         <router-link to="/">home</router-link> >
         {{ product.ProductDescription }}
       </div>
-      <div class="flex text-black justify-between">
-        <div class="w-1/2">
+      <div class="lg:flex text-black justify-between">
+        <div class="lg:w-1/2">
           <h1 class="text-left text-4xl font-bold">
             {{ product.Brand }}
           </h1>
@@ -38,11 +38,11 @@
               </div>
             </div>
             <div class="w-5/6">
-              <img class="w-full m-auto p-20" :src="imgActive" />
+              <img class="w-10/12 m-auto py-10" :src="imgActive" />
             </div>
           </div>
         </div>
-        <div class="w-1/2 pl-24">
+        <div class="lg:w-1/2 pl-24">
           <div class="text-left text-2xl font-bold">Buying Options</div>
           <div class="border border-grey-200 mt-8 rounded-2xl p-6">
             <div class="flex justify-between">

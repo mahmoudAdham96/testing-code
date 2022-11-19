@@ -66,7 +66,7 @@
         </div>
       </div>
     </div>
-    <div v-if="products.length <= 0">
+    <div v-if="products.length <= 0 && isLoaded" class="mt-20">
       <div>
         <img
           alt="Not Found"
@@ -89,6 +89,17 @@
       </div>
       <div class="text-xl font-bold mt-4">No results for “{{ search }}”</div>
       <p>Check spelling for any typos or errors</p>
+      <!-- <input
+        type="text"
+        id="first_name"
+        ref="fileInput"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="John"
+        required
+      /> -->
+      <button @click="this.$refs.fileInput.focus()" class="trigger">
+        Try Another Search
+      </button>
     </div>
     <div v-if="products.length >= 1" class="Page navigation mt-20">
       <paginate
@@ -178,7 +189,7 @@ export default {
           this.products = response.data.products;
           this.pages = response.data.pages;
           this.currentPage = this.pages.CurrentPageIndex;
-          console.log(response);
+          console.log(this.$refs);
           // console.log(this.products.data.pages.CurrentPageIndex);
           setTimeout(() => (this.isLoaded = true), 500);
         })
